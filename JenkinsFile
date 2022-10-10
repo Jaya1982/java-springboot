@@ -1,0 +1,60 @@
+pipeline{
+    agent
+    stages{
+        stage('build'){
+            steps{
+                echo 'This is Build'
+            }
+        }
+        stage('test'){
+            steps{
+                echo 'This is Test'
+            }
+        }
+        stage('Sonar Qube-Quality Gate'){
+            steps{
+                echo 'This is Code Security check'
+            }
+        }
+        stage('Move to Artifactory'){
+            steps{
+                echo 'Moved to Artifactory'
+            }
+        }
+        stage('QA Environment'){
+        steps{
+            echo 'Build QA'
+        }
+        }
+        stage('UAT Environment'){
+        steps{
+            echo 'Build UAT'
+        }
+        }
+        stage('Stage Environment'){
+        steps{
+            echo 'Build Stage'
+        }
+        }
+        stage('Production Environment'){
+        steps{
+            echo 'Build Prod'
+        }
+        }
+ }
+post{
+    failure{
+        echo 'Failed'
+    }
+    success{
+        echo 'Success'
+    }
+    aborted{
+        echo 'Aborted'
+    }
+    always{
+        echo'Always'
+    }
+}
+       
+}
